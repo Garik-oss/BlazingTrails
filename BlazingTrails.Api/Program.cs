@@ -1,5 +1,11 @@
+using BlazingTrails.Api.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<BlazingTrailsContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString(nameof(BlazingTrailsContext)))
+);
 builder.Services.AddControllers();
 
 var app = builder.Build();
